@@ -2,6 +2,8 @@ async function handle() {
     let characters = [];
     let password = "";
 
+    const passwordLength = process.env.PASSWORD_LENGTH
+
     if(process.env.UPPERCASE_LETTERS === "true"){
         characters.push(... "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
     }
@@ -16,6 +18,13 @@ async function handle() {
     if(process.env.SPECIAL_CHARACTERS === "true"){
         characters.push(... "!@#$%^&*()_+=-{}[]|;':\",.<>/?");
     }
+
+    for(let i = 0; i < passwordLength; i++){
+        const index = Math.floor(Math.random() * characters.length)
+        password += characters[index];
+    }
+
+    return password
 
 }
 
